@@ -1,11 +1,11 @@
-
+from collections import deque
 class Node:
     def __init__(self, value):
         self.info = value
         self.right = None
         self.left = None
 
-class Binary_tree:
+class binary_tree:
     def __init__(self):
         self.info = None
 
@@ -23,11 +23,15 @@ class Binary_tree:
         self._display(p.left, level+1)
         print()
 
-        for i in range(level):
+        for _ in range(level):
             print("     ",end="")
         print(p.info)
         self._display(p.right, level+1)
 
+
+
+
+    
 
     
     def create_tree(self):
@@ -42,8 +46,8 @@ class Binary_tree:
 
 
 
-Binary_tree1 = Binary_tree()
-Binary_tree1.create_tree()
+binary_tree1 = binary_tree()
+binary_tree1.create_tree()
 
 
-Binary_tree1.display()
+binary_tree1.display()
