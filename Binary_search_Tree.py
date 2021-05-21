@@ -155,17 +155,45 @@ class binary_search_tree:
 
 
 
-        def min1(Self):
+        def min1(self):
             if self.empty():
                 raise TreeEmtyEroor("Tree is Empty")
             p = self.root
             while p.left is not None:
                 p = p.left 
             return p.info
-                   
+
 
                 
-                
+        def max1(self):
+            if self.empty():
+                raise TreeEmptyError("tress is empty"):
+            p = self.root
+            while p.right is not None:
+                p = p.right
+            return p.info 
+
+
+        def min2(self):
+            if self.empty():
+                raise TreeEmptyError("tress is empty")
+            return self._min(self.root).info
+        
+        def _min(self,p):
+            if p.left is None:
+                return p
+
+            return self._min(p.left)
+
+        def max2(self):
+            if self.empty():
+                raise TreeEmptyError("tress is empty")
+            return self._max(self.root).info
+        def _max(self):
+            if p.right is None:
+                return p
+            return self._max(p.right)
+
 
 
 
