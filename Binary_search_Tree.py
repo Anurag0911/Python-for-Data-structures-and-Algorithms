@@ -17,16 +17,16 @@ class binary_search_tree:
         return self.root == None
 
 
-     def insert(self, x):
+    def insert(self, x):
          self.root = self._insert(self.root, x)
 
     def _insert(self, p, x):
         if p is None:
             p = Node(x)
         elif x < p.info:
-            p.left = self._insert(.left, x)
+            p.left = self._insert(p.left, x)
         elif x > p.info :
-            p.right = self._insert(.left, x)
+            p.right = self._insert(p.left, x)
         else:
             print(x, "already present ")
         return p
@@ -79,6 +79,98 @@ class binary_search_tree:
         def delete(self, x):
             self.root = self._delete(self.root, x)
 
+
+        def _delete(self,p,x):
+            if p is None:
+                print(x, " this element is not found")
+                return p
+
+
+            if x < p.info:
+                p.left = self._delete(p.left, x)
+            elif x > p.info:
+                p.left = self._delete(p.right, x)
+            else:
+                if p.left is not None and p.right is not None:
+                    s= p.right
+                    while s.left is not None:
+                        s= s.left
+                    p.info = s.info
+
+                    p.right = self._delete(p.right,s.info)
+
+                else:
+                    if p.left is not None:
+                        ch = p.left 
+                    else:
+                        ch = p.right
+                    p = ch
+            return p
+
+        def delete1(self, x):
+            p = self.root
+            par = None
+            while p is not None:
+                if x== p.info:
+                    break
+                par = p 
+                if x< p.info:
+                    p = p.left
+                else:
+                    p = p.right
+                if p == None:
+                    print(x, "not found")
+                
+                # Case c: 2 children 
+                #find inorder success and its parent 
+
+                if p.left is not None and p.right is not None:
+                    ps = p 
+                    s = p.right 
+
+                    while s.left is not None:
+                        ps = p
+                        s = s.left
+
+                    p.info = s.info
+                    p = s
+                    par = ps
+
+                    #case B and Case A : 1 or no child
+                    if p.left is not None : # node to be deleted has left child 
+                        ch = p.left 
+
+                    else:   # node that has to be deleted has a right chilf pt no child
+                        ch = p.right 
+
+
+
+                    if par == none : # node to be deleted is self.root 
+                        self.root = ch
+                    elif p == par.left: # node is left child of the parent 
+                        par.left = ch 
+                    else: # node is orght child of its parent 
+
+                        par.right = ch 
+
+
+
+        def min1(Self):
+            if self.empty():
+                raise TreeEmtyEroor("Tree is Empty")
+            p = self.root
+            while p.left is not None:
+                p = p.left 
+            return p.info
+                   
+
+                
+                
+
+
+
+
+    
          
 
 
