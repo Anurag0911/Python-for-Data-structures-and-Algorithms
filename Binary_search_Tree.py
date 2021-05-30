@@ -56,7 +56,7 @@ class binary_search_tree:
                 par.right = temp
 
     def search(self, x):
-        return self._search(self.rooot, x)
+        return self._search(self.root, x)
 
     def _search(self, p, x):
         if p is None:
@@ -161,7 +161,7 @@ class binary_search_tree:
     
     def min1(self): # this is the iterative method
             if self.empty():
-                raise TreeEmtyEroor("Tree is Empty")
+                raise TreeEmptyError("Tree is Empty")
             p = self.root
             while p.left is not None:
                 p = p.left 
@@ -171,7 +171,7 @@ class binary_search_tree:
                 
     def max1(self):   # this is the iterative method
         if self.empty():
-            raise TreeEmptyError("tress is empty")
+            raise TreeEmptyError("tree is empty")
         p = self.root
         while p.right is not None:
             p = p.right
@@ -180,7 +180,7 @@ class binary_search_tree:
 
     def min2(self):   # this is the recursive method
         if self.empty():
-            raise TreeEmptyError("tress is empty")
+            raise TreeEmptyError("tree is empty")
         return self._min(self.root).info
     
     def _min(self,p):
@@ -191,9 +191,10 @@ class binary_search_tree:
 
     def max2(self):   # this is the recursive method
         if self.empty():
-            raise TreeEmptyError("tress is empty")
+            raise TreeEmptyError("tree is empty")
         return self._max(self.root).info
-    def _max(self):
+    
+    def _max(self, p):
         if p.right is None:
             return p
         return self._max(p.right)
@@ -255,7 +256,9 @@ class binary_search_tree:
         self._postorder(p.right)
         print(p.info, end="   ")
     
+#this is level order traversal5
     def level_order(self):
+        print("The level order traversal is: ", end="")
         if self.root == None:
             return 
         
@@ -265,7 +268,7 @@ class binary_search_tree:
 
         while len(q)!=0:
             p = q.popleft()
-            print(p.info + "",end = "")
+            print(p.info ,end = "   ")
             if p.left is not None:
                 q.append(p.left)
                 
@@ -274,6 +277,7 @@ class binary_search_tree:
                 
 
     def height(self):
+        print("The height of the Tree is: ", end="")
         
         return self._height(self.root)
     
