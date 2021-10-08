@@ -8,10 +8,10 @@ class Node:
         self.info = value
         self.left = None
         self.right = None
-        
 
 
-class binary_search_tree: 
+
+class binary_search_tree:
 
     def __init__(self):
         self.root = None
@@ -40,18 +40,18 @@ class binary_search_tree:
         while p is not None:
             par = p
             if x < p.info:
-                p = p.left 
+                p = p.left
             elif x > p.info:
                 p = p.right
             else:
                 print(x + "already in the tree")
-                return 
+                return
             temp = Node(x)
 
             if par == None:
-                self.root = temp 
+                self.root = temp
             elif x < par.info:
-                p = p.right 
+                p = p.right
             else:
                 par.right = temp
 
@@ -60,19 +60,19 @@ class binary_search_tree:
 
     def _search(self, p, x):
         if p is None:
-            return None   # key not found 
+            return None   # key not found
         if x < p.info:    #search in left subtree
             return self._search(p.left, x)
         if x > p.info:      #search in right  subtree
             return self._search(p.right, x)
-        return p              # key found 
+        return p              # key found
 
-    
+
     def search1(self, x):
         p = self.root
         while p is not None:
             if x<p.info:
-                p = p.left      # move to left child 
+                p = p.left      # move to left child
             elif x>p.info:
                 p= p.right      # move to right child
             else:
@@ -104,7 +104,7 @@ class binary_search_tree:
 
             else:
                 if p.left is not None:
-                    ch = p.left 
+                    ch = p.left
                 else:
                     ch = p.right
                 p = ch
@@ -116,20 +116,20 @@ class binary_search_tree:
         while p is not None:
             if x== p.info:
                 break
-            par = p 
+            par = p
             if x< p.info:
                 p = p.left
             else:
                 p = p.right
             if p == None:
                 print(x, "not found")
-            
-            # Case c: 2 children 
-            #find inorder success and its parent 
+
+            # Case c: 2 children
+            #find inorder success and its parent
 
             if p.left is not None and p.right is not None:
-                ps = p 
-                s = p.right 
+                ps = p
+                s = p.right
 
                 while s.left is not None:
                     ps = p
@@ -140,49 +140,49 @@ class binary_search_tree:
                 par = ps
 
                 #case B and Case A : 1 or no child
-                if p.left is not None : # node to be deleted has left child 
-                    ch = p.left 
+                if p.left is not None : # node to be deleted has left child
+                    ch = p.left
 
                 else:   # node that has to be deleted has a right chilf pt no child
-                    ch = p.right 
+                    ch = p.right
 
 
 
-                if par == none : # node to be deleted is self.root 
+                if par == none : # node to be deleted is self.root
                     self.root = ch
-                elif p == par.left: # node is left child of the parent 
-                    par.left = ch 
-                else: # node is orght child of its parent 
+                elif p == par.left: # node is left child of the parent
+                    par.left = ch
+                else: # node is orght child of its parent
 
-                    par.right = ch 
+                    par.right = ch
 
 
 
-    
+
     def min1(self): # this is the iterative method
             if self.empty():
                 raise TreeEmptyError("Tree is Empty")
             p = self.root
             while p.left is not None:
-                p = p.left 
+                p = p.left
             return p.info
 
 
-                
+
     def max1(self):   # this is the iterative method
         if self.empty():
             raise TreeEmptyError("tree is empty")
         p = self.root
         while p.right is not None:
             p = p.right
-        return p.info 
+        return p.info
 
 
     def min2(self):   # this is the recursive method
         if self.empty():
             raise TreeEmptyError("tree is empty")
         return self._min(self.root).info
-    
+
     def _min(self,p):
         if p.left is None:
             return p
@@ -193,7 +193,7 @@ class binary_search_tree:
         if self.empty():
             raise TreeEmptyError("tree is empty")
         return self._max(self.root).info
-    
+
     def _max(self, p):
         if p.right is None:
             return p
@@ -204,7 +204,7 @@ class binary_search_tree:
     def display(self):
         self._display(self.root,0) # this is private recursive method
         print()
-    
+
     def _display(self, p , level):
         if p == None:
             return
@@ -217,70 +217,70 @@ class binary_search_tree:
 
 
 
-# lets us try the Preorder traversal 
+# lets us try the Preorder traversal
     def preorder(self):
         print("This is the preorder traversal: ", end="")
         self._preorder(self.root)
         print()
-    
+
     def _preorder(self, p):
         if p == None:
-            return 
+            return
         print(p.info, end="   ")
         self._preorder(p.left)
         self._preorder(p.right)
 
-# lets us try the Inorder traversal 
+# lets us try the Inorder traversal
     def inorder(self):
         print("This is the inorder traversal: ", end="")
         self._inorder(self.root)
         print()
-    
+
     def _inorder(self, p):
         if p == None:
-            return 
+            return
         self._inorder(p.left)
         print(p.info, end="   ")
         self._inorder(p.right)
 
-# lets us try the Inorder traversal 
+# lets us try the Inorder traversal
     def postorder(self):
         print("This is the postorder traversal: ", end="")
         self._postorder(self.root)
         print()
-    
+
     def _postorder(self, p):
         if p == None:
-            return 
+            return
         self._postorder(p.left)
         self._postorder(p.right)
         print(p.info, end="   ")
-    
+
 #this is level order traversal5
     def level_order(self):
         print("The level order traversal is: ", end="")
         if self.root == None:
-            return 
-        
+            return
+
         q = deque()
         q.append(self.root)
-        
+
 
         while len(q)!=0:
             p = q.popleft()
             print(p.info ,end = "   ")
             if p.left is not None:
                 q.append(p.left)
-                
+
             if p.right is not None:
                 q.append(p.right)
-                
+
 
     def height(self):
         print("The height of the Tree is: ", end="")
-        
+
         return self._height(self.root)
-    
+
     def _height(self, p):
         if p is None:
             return 0

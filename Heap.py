@@ -8,7 +8,7 @@ class Heap:
         self.a[0] = 99999
 
     def insert(self, value):
-       self.n+=1 #increase the size by one 
+       self.n+=1 #increase the size by one
        self.a[self.n] = value
        self.restore_up(self.n)
 
@@ -58,7 +58,7 @@ class Heap:
         if self.n == 0:
             print("heap is empty")
             return
-        
+
         print("heap size = ",self.n)
         for i in range(q,self.n+1):
             print(self.a[i],end ="     ")
@@ -66,7 +66,7 @@ class Heap:
 
 
 
-        
+
 
 
 h = Heap(20)
@@ -82,11 +82,11 @@ while True:
         value = int(input("enter value"))
         h.insert(value)
     elif choice==2:
-    
+
         print("max valaue", h.delete_root())
     elif choice==3:
         h.display()
     elif choice==4:
         break
     else:
-        print("wrong choice") 
+        print("wrong choice")
